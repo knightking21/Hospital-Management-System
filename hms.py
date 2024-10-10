@@ -1,65 +1,11 @@
-import mysql.connector as sql
-
-
-def connect(pswd: str, usr: str = "root"):
-    global mydb, cur
-    mydb = sql.connect(host="localhost", user=usr, passwd=pswd)
-    if mydb.is_connected():
-        cur = mydb.cursor()
+def connect(psd):
+    if psd=="TechTitans":
         return True
     else:
         return False
 
-
 def setup():
-    global cur
-    cur.execute("create database if not exists hms")
-    cur.execute("use hms")
-    # cur.execute("""create table if not exist""" """settings()""")
-    cur.execute(
-        """create table if not exists """
-        """specialisation(SPECID int PRIMARY KEY AUTO_INCREMENT, SPECNAME varchar(25) NOT NULL)"""
-    )
-    cur.execute(
-        """create table if not exists """
-        """patients(PATID int(3) AUTO_INCREMENT PRIMARY KEY, NAME varchar(50) NOT NULL,"""
-        """AGE int NOT NULL, GENDER varchar(10) NOT NULL, CONTACT varchar(10) NOT NULL,"""
-        """ADDRESS varchar(25) NOT NULL, RID int NOT NULL REFERENCES room(RID),"""
-        """DOCID int NOT NULL REFERENCES doctors(DOCID), SURID int REFERENCES surgeons(SURID),"""
-        """NURID int NOT NULL REFERENCES nurses(NURID), AMOUNT int DEFAULT 0,"""
-        """ADMIT_DATE date NOT NULL) AUTO_INCREMENT=1000"""
-    )
-    cur.execute(
-        """create table if not exists """
-        """doctors(DOCID int AUTO_INCREMENT PRIMARY KEY, NAME varchar(50) NOT NULL,"""
-        """AGE int NOT NULL, GENDER varchar(10) NOT NULL, CONTACT varchar(10) NOT NULL,"""
-        """ADDRESS varchar(25) NOT NULL, SPECID int NOT NULL REFERENCES specialisation(SPECID),"""
-        """SALARY int NOT NULL, JOIN_DATE date NOT NULL) AUTO_INCREMENT=100"""
-    )
-    cur.execute(
-        """create table if not exists """
-        """surgeons(SURID int AUTO_INCREMENT PRIMARY KEY, NAME varchar(50) NOT NULL,"""
-        """AGE int NOT NULL, GENDER varchar(10) NOT NULL, CONTACT varchar(10) NOT NULL,"""
-        """ADDRESS varchar(25) NOT NULL, SPECID int NOT NULL REFERENCES specialisation(SPECID),"""
-        """SALARY int NOT NULL, JOIN_DATE date NOT NULL) AUTO_INCREMENT=100"""
-    )
-    cur.execute(
-        """create table if not exists """
-        """nurses(NURID int AUTO_INCREMENT PRIMARY KEY, NAME varchar(50) NOT NULL,"""
-        """AGE int NOT NULL, GENDER varchar(10) NOT NULL, CONTACT varchar(10) NOT NULL,"""
-        """ADDRESS varchar(25) NOT NULL,"""
-        """SALARY int NOT NULL, JOIN_DATE date NOT NULL) AUTO_INCREMENT=100"""
-    )
-    cur.execute(
-        """create table if not exists """
-        """other_staffs(OTHID int AUTO_INCREMENT PRIMARY KEY, NAME varchar(50) NOT NULL,"""
-        """AGE int NOT NULL, GENDER varchar(10) NOT NULL, CONTACT varchar(10) NOT NULL,"""
-        """ADDRESS varchar(25) NOT NULL, OCCUPATION varchar(25) NOT NULL,"""
-        """SALARY int NOT NULL, JOIN_DATE date NOT NULL) AUTO_INCREMENT=100"""
-    )
-    # cur.execute("""create table if not exists """ """room()""")
-    # cur.execute("""create table if not exists """ """treatments()""")
-    # cur.execute("""create table if not exists """ """surgeries()""")
+    print("Ready to go!!")
 
 
 def menu(title: str, options: list):
@@ -90,10 +36,10 @@ if connect(psd):
         if ch == 1:
             usrname = input("Enter ADMIN Username: ")
             pswd = input("Enter ADMIN Password: ")
-            cur.execute("SELECT CURDATE()+5")
-            p = cur.fetchall()[0][0]
-            print(p)
-            if usrname == "SADRAP" and pswd == str(p):
+            #cur.execute("SELECT CURDATE()+5")
+            #p = cur.fetchall()[0][0]
+            #print(p)
+            if usrname == "SADRAP" and pswd == "1234":
                 print("\nAdmin Here OMG")
             else:
                 print("\nWrong Username or Password")
