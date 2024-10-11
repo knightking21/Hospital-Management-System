@@ -1,0 +1,5 @@
+run = "python hms.py"
+modules = ["python-3.11"]
+
+[deployment]
+run = ["sh", "-c", "python hms.py"]
