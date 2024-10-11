@@ -44,7 +44,20 @@ if connect(psd):
             else:
                 print("\nWrong Username or Password")
         elif ch == 2:
-            print("Staffs Here")
+            while True:
+                ch2 = menu(
+                    "Login as: ",
+                ["Doctor","Surgeon",
+            "Receptionist","Exit"]
+            )
+                if ch2 == 1:
+                    print("Doctor Menu")
+                elif ch2== 2:
+                    print("Surgeon Menu")
+                elif ch2==3:
+                    print("Receptionist Menu")
+                else:
+                    break
         elif ch == 3:
             exch = input(
                 """\nAre you sure you want to exit?\n"""
